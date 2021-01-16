@@ -1,8 +1,8 @@
 const WebSocket = require("ws");
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: 3005 });
 
-console.log("starting server on port 8080");
+console.log("starting server on port 3005");
 wss.on("connection", (ws) => {
     console.log("connection stablished");
     ws.send("connection stablished");
