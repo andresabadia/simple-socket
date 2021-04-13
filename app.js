@@ -17,10 +17,9 @@ wss.on("connection", (ws, req) => {
 
         const client = dgram.createSocket("udp4");
 
-        const remoteAddress = ws._socket.remoteAddress;
+        let remoteAddress = ws._socket.remoteAddress;
+        remoteAddress = remoteAddress.replace("::ffff:", "");
         console.log("remoteAddress: ", remoteAddress);
-        // const remoteConnection = connection;
-        console.log("remoteConnection: ", req.connection.remoteAddress);
 
         client.send("Hello World!", 0, 12, 12000, remoteAddress);
         client.send("Hello2World!", 0, 12, 12000, remoteAddress);
