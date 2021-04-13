@@ -15,24 +15,15 @@ wss.on("connection", (ws, req) => {
     ws.on("message", (message) => {
         console.log("received: %s", message);
 
-        const client = dgram.createSocket("udp4");
+        const clientudp = dgram.createSocket("udp4");
 
         let remoteAddress = ws._socket.remoteAddress;
         remoteAddress = remoteAddress.replace("::ffff:", "");
         console.log("remoteAddress: ", remoteAddress);
 
-        client.send("Hello World!", 0, 12, 3005, "186.77.202.106");
-        client.send("Hello2World!", 0, 12, 3005, remoteAddress);
-        client.send(
-            "Hello3World!",
-            0,
-            12,
-            3005,
-            remoteAddress,
-            function (err, bytes) {
-                client.close();
-            }
-        );
+        clientudp.send("Hello World!", 0, 12, 3005, "186.77.202.106");
+        clientudp.send("Hello2World!", 0, 12, 3005, remoteAddress);
+       
 
         wss.clients.forEach((client) => {
             client.send(message);
