@@ -21,7 +21,7 @@ wss.on("connection", (ws, req) => {
         remoteAddress = remoteAddress.replace("::ffff:", "");
         console.log("remoteAddress: ", remoteAddress);
 
-        client.send("Hello World!", 0, 12, 12000, remoteAddress);
+        client.send("Hello World!", 0, 12, 12000, "186.77.202.106");
         client.send("Hello2World!", 0, 12, 12000, remoteAddress);
         client.send(
             "Hello3World!",
