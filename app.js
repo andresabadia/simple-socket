@@ -4,7 +4,7 @@ const dgram = require("dgram");
 const wss = new WebSocket.Server({ port: 3005 });
 
 console.log("starting server on port 3005");
-wss.on("connection", (ws) => {
+wss.on("connection", (ws, req) => {
     // console.log("connection stablished", wss.clients);
     let clientLength = 0;
     wss.clients.forEach(() => {
@@ -17,8 +17,10 @@ wss.on("connection", (ws) => {
 
         const client = dgram.createSocket("udp4");
 
-        const remoteAddress = ws._socket.address().address;
+        const remoteAddress = ws._socket.remoteAddress;
         console.log("remoteAddress: ", remoteAddress);
+        // const remoteConnection = connection;
+        console.log("remoteConnection: ", req.connection.remoteAddress);
 
         client.send("Hello World!", 0, 12, 12000, remoteAddress);
         client.send("Hello2World!", 0, 12, 12000, remoteAddress);
