@@ -4,6 +4,7 @@ const dgram = require("dgram");
 const wss = new WebSocket.Server({ port: 3005 });
 
 const clientudp = dgram.createSocket("udp4");
+clientudp.bind(3005);
 
 console.log("starting server on port 3005");
 wss.on("connection", (ws, req) => {
