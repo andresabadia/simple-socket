@@ -21,7 +21,7 @@ wss.on("connection", (ws, req) => {
 		let remotePort = ws._socket.remotePort;
         remoteAddress = remoteAddress.replace("::ffff:", "");
         console.log("remoteAddress: ", remoteAddress);
-		onsole.log("remoteWSport: ", remotePort);
+		console.log("remoteWSport: ", remotePort);
 		console.log("remoteUDPport: ", clientudp.address().port);
 
         clientudp.send("Hello World!", 0, 12, remotePort, "186.77.202.106");
