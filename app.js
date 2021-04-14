@@ -7,6 +7,22 @@ const clientudp = dgram.createSocket("udp4");
 clientudp.bind(3005);
 
 console.log("starting server on port 3005");
+clientudp.on('message',function(msg,info){
+  console.log('Data received from client : ' + msg.toString());
+  console.log('Received %d bytes from %s:%d\n',msg.length, info.address, info.port);
+
+//sending msg
+clientudp.send("server sent this",info.port,info.address,function(error){
+  if(error){
+    client.close();
+  }else{
+    console.log('Data sent !!!');
+  }
+
+});
+
+});
+
 wss.on("connection", (ws, req) => {
     // console.log("connection stablished", wss.clients);
     let clientLength = 0;
