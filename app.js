@@ -18,11 +18,14 @@ wss.on("connection", (ws, req) => {
         const clientudp = dgram.createSocket("udp4");
 
         let remoteAddress = ws._socket.remoteAddress;
+		let remotePort = ws._socket.remotePort;
         remoteAddress = remoteAddress.replace("::ffff:", "");
         console.log("remoteAddress: ", remoteAddress);
+		onsole.log("remoteWSport: ", remotePort);
+		console.log("remoteUDPport: ", clientudp.address().port);
 
-        clientudp.send("Hello World!", 0, 12, 3005, "186.77.202.106");
-        clientudp.send("Hello2World!", 0, 12, 3005, remoteAddress);
+        clientudp.send("Hello World!", 0, 12, remotePort, "186.77.202.106");
+        clientudp.send("Hello2World!", 0, 12, remotePort, remoteAddress);
        
 
         wss.clients.forEach((client) => {
