@@ -22,7 +22,13 @@ wss.on("connection", (ws, req) => {
         remoteAddress = remoteAddress.replace("::ffff:", "");
         console.log("remoteAddress: ", remoteAddress);
 		console.log("remoteWSport: ", remotePort);
-		console.log("remoteUDPport: ", clientudp.address().port);
+		var address = clientudp.address();
+		var port = address.port;
+		var family = address.family;
+		var ipaddr = address.address;
+		console.log('Server is listening at port' + port);
+		console.log('Server ip :' + ipaddr);
+		console.log('Server is IP4/IP6 : ' + family);
 
         clientudp.send("Hello World!", 0, 12, remotePort, "186.77.202.106");
         clientudp.send("Hello2World!", 0, 12, remotePort, remoteAddress);
