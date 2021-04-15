@@ -4,9 +4,11 @@ const dgram = require("dgram");
 const wss = new WebSocket.Server({ port: 3005 });
 
 const clientudp = dgram.createSocket("udp4");
-clientudp.bind(3005);
+clientudp.bind(33333, "172.31.31.174");
 
-console.log("starting server on port 3005");
+clientudp.on('listening', function () {
+  console.log('UDP Server listening on ' + clientudp.address().address + ":" + clientudp.address().port);
+});
 clientudp.on('message',function(msg,info){
   console.log('Data received from client : ' + msg.toString());
   console.log('Received %d bytes from %s:%d\n',msg.length, info.address, info.port);
