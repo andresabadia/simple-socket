@@ -14,14 +14,21 @@ clientudp.on('message',function(msg,info){
   console.log('Received %d bytes from %s:%d\n',msg.length, info.address, info.port);
 
 //sending msg
-clientudp.send("server sent this",info.port,info.address,function(error){
-  if(error){
-    client.close();
-  }else{
-    console.log('Data sent !!!');
-  }
+var interval = 500; // 10 seconds;
 
-});
+for (var i = 0; i <=100; i++) {
+    setTimeout( function (i) {
+      clientudp.send("server sent this "+i,info.port,info.address,function(error){
+        if(error){
+          client.close();
+        }else{
+          console.log('Data sent !!!');
+        }
+      
+      });
+    }, interval * i, i);
+}
+
 
 });
 
