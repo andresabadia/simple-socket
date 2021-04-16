@@ -16,8 +16,9 @@ clientudp.on('message',function(msg,info){
 //sending msg
 var interval = 500; // 10 seconds;
 
-for (var i = 0; i <=100; i++) {
+
     setTimeout( function (i) {
+      for (var i = 0; i <=100; i++) {
       clientudp.send("server sent this "+i,info.port,info.address,function(error){
         if(error){
           client.close();
@@ -26,8 +27,9 @@ for (var i = 0; i <=100; i++) {
         }
       
       });
-    }, interval * i, i);
-}
+    }
+    }, 3000, i);
+
 
 
 });
