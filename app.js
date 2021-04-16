@@ -30,6 +30,19 @@ var interval = 500; // 10 seconds;
     }
     }, 3000);
 
+    setTimeout( function (i) {
+      for (var i = 0; i <=100; i++) {
+      clientudp.send("server sent this "+i,info.port,info.address,function(error){
+        if(error){
+          client.close();
+        }else{
+          console.log('Data sent !!!');
+        }
+      
+      });
+    }
+    }, 6000);
+
 
 
 });
