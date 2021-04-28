@@ -15,6 +15,7 @@ clientudp.on('message',function(msg,info){
 
 //sending msg
 var interval = 10000; // 10 seconds;
+var i=0;
 
 
     setTimeout( function (i) {
