@@ -4,7 +4,7 @@ const dgram = require("dgram");
 const wss = new WebSocket.Server({ port: 3005 });
 
 const clientudp = dgram.createSocket("udp4");
-clientudp.bind(33333, "172.31.31.174");
+clientudp.bind(33333, "172.31.44.252");
 
 clientudp.on('listening', function () {
   console.log('UDP Server listening on ' + clientudp.address().address + ":" + clientudp.address().port);
@@ -14,11 +14,11 @@ clientudp.on('message',function(msg,info){
   console.log('Received %d bytes from %s:%d\n',msg.length, info.address, info.port);
 
 //sending msg
-var interval = 500; // 10 seconds;
+var interval = 10000; // 10 seconds;
 
 
     setTimeout( function (i) {
-      for (var i = 0; i <=100; i++) {
+      for (var i = 0; i <=2000; i++) {
       clientudp.send("server sent this "+i,info.port,info.address,function(error){
         if(error){
           client.close();
@@ -28,20 +28,21 @@ var interval = 500; // 10 seconds;
       
       });
     }
-    }, 3000);
+    }, interval*i);
 
-    setTimeout( function (i) {
-      for (var i = 0; i <=100; i++) {
-      clientudp.send("server sent this "+i,info.port,info.address,function(error){
-        if(error){
-          client.close();
-        }else{
-          console.log('Data sent !!!');
-        }
+    // setTimeout( function (i) {
+    //   for (var i = 0; i <=100; i++) {
+    //     const d=new Date().getTime
+    //   clientudp.send("server sent this "+i+" time:"+d,info.port,info.address,function(error){
+    //     if(error){
+    //       client.close();
+    //     }else{
+    //       console.log('Data sent !!!');
+    //     }
       
-      });
-    }
-    }, 6000);
+    //   });
+    // }
+    // }, 6000);
 
 
 
