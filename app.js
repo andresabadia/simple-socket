@@ -19,7 +19,7 @@ var f=0;
 
 for (var i = 0; i <=2000; i++) {
     setTimeout( function (i) {
-      const d=new Date().getTime;
+      const d=new Date().getTime();
       f++;
       clientudp.send("server sent this"+f+" time:"+d,info.port,info.address,function(error){
         if(error){
