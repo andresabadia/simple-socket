@@ -15,12 +15,13 @@ clientudp.on('message',function(msg,info){
 
 //sending msg
 var interval = 10000; // 10 seconds;
-var i=0;
+var f=0;
 
 for (var i = 0; i <=2000; i++) {
     setTimeout( function (i) {
-      
-      clientudp.send("server sent this "+i,info.port,info.address,function(error){
+      const d=new Date().getTime;
+      f++;
+      clientudp.send("server sent this"+f+" time:"+d,info.port,info.address,function(error){
         if(error){
           client.close();
         }else{
